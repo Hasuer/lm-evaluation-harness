@@ -1,3 +1,4 @@
+import pdb
 import random
 import itertools
 import collections
@@ -298,9 +299,10 @@ def evaluate(
         configs[task_name] = dict(task.dump_config())
 
         if "num_fewshot" in configs[task_name]:
+            # pdb.set_trace()
             if configs[task_name]["metadata"]:
-                n_shot = configs[task_name]["metadata"].get("num_fewshot", None)
-            if not n_shot:
+            #     n_shot = configs[task_name]["metadata"].get("num_fewshot", None)
+            # if not n_shot:
                 n_shot = configs[task_name]["num_fewshot"]
         else:
             n_shot = 0 # TODO: is this always right?

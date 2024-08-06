@@ -1,0 +1,31 @@
+group: cmoraleval_shot
+task: cmoraleval_d1_no_nm_shot #tab空格
+dataset_path: json #tab空格
+dataset_name: null #tab空格
+dataset_kwargs:
+  data_files: 
+    test: /data1/lhyu/CMoralEval/eval/MoralIndex/1preprocess/remove_similarity/fined_question_output_d1.json
+    # validation: /data/lhyu/CMoralEval/eval/MoralIndex/1preprocess/raw2question_output_c.json
+    validation: /data1/lhyu/CMoralEval/eval/MoralIndex/1preprocess/get_valid_split/valid_no_nm.json
+# training_split: null #tab空格
+# validation_split: null #tab空格
+test_split: test #tab空格
+fewshot_split: validation
+fewshot_config:
+  sampler: first_n
+output_type:  multiple_choice #tab空格
+process_docs: !function util.process_docs_no_nm #tab空格
+doc_to_text:  "{{query}}" #space空格 tab 都可以 这里是tab
+doc_to_target:  "{{gold}}" #space空格 tab 都可以 这里是tab
+doc_to_choice:  "{{choices}}" #space空格 tab 都可以 这里是tab
+fewshot_delimiter:  " "
+#下面的空格全是tab
+metric_list:
+  - metric: acc
+    aggregation:  mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation:  mean
+    higher_is_better: true
+metadata:
+  - version:  0.0
